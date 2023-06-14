@@ -131,19 +131,7 @@ def beacon(variable):
 
 
 def start():
-    print("0 or 1?")
-    a = input("Your input: ")
-    try:
-        if int(a) == 0:
-            prestige()
-        elif int(a) == 1:
-            pass
-        else:
-            print("\nPlease provide a valid input.\n")
-            start()
-    except ValueError:
-        print("\nPlease provide a valid input.\n")
-        start()
+    prestige()
 
 
 def prestige():
@@ -177,4 +165,5 @@ def prestige():
     print("That's" + " " + updateunit(SEgain) + " " + "Soul Eggs")
 
 
+print("Welcome to the Soul Egg Calculator!")
 start()
