@@ -112,16 +112,18 @@ def updateunit(n):
 
 def numberinput(text):
     while True:
-        a = input(f"{text}")
-        if numbertype(a) in [0, 1] and float(a) >= 0:
-            return str(a)
-            break
-        elif numbertype(a) in [2] and updatenumber(a) >= 0:
-            return str(a)
-            break
-        else:
+        try:
+            a = input(f"{text}")
+            if numbertype(a) in [0, 1] and float(a) >= 0:
+                return str(a)
+                break
+            elif numbertype(a) in [2] and updatenumber(a) >= 0:
+                return str(a)
+                break
+            else:
+                print("Please provide a valid input.")
+        except TypeError:
             print("Please provide a valid input.")
-    
     
 def beacon(variable):
     if variable > 0:
