@@ -113,32 +113,53 @@ def updateunit(n):
 def numberinput(text):
     while True:
         a = input(f"{text}")
-        if numbertype(a) not in [0, 1, 2]:
+        if numbertype(a) in [0, 1] and float(a) >= 0:
+            return str(a)
+            break
+        elif numbertype(a) in [2] and updatenumber(a) >= 0:
+            return str(a)
+            break
+        else:
             print("Please provide a valid input.")
-            continue
-        break
-    return str(a)
+    
+    
+def beacon(variable):
+    if variable > 0:
+        return 1
+    else:
+        return 0
 
 
 def start():
     print("0 or 1?")
-    a = int(input("Your input: "))
-    if a == 0:
-        prestige()
-    elif a == 1:
-        pass
+    a = input("Your input: ")
+    try:
+        if int(a) == 0:
+            prestige()
+        elif int(a) == 1:
+            pass
+        else:
+            print("\nPlease provide a valid input.\n")
+            start()
+    except ValueError:
+        print("\nPlease provide a valid input.\n")
+        start()
 
 
 def prestige():
     print("Please enter the information required below.")
+    activeBoosts = 0
     prestigeER = updatenumber(numberinput("\nPrestige Bonus Epic Research Levels: "))
     SEboostEvent = updatenumber(numberinput("\nSoul Egg Gain Boost Event Multiplier: "))
     prestigeEarnings = updatenumber(numberinput("\nPrestige Earnings: "))
     soulBeacon = updatenumber(numberinput("\nSoul Beacon Multiplier: "))
-    phoenixFeather = updatenumber(numberinput("\nPhoenix Feather Bonus Percentage: "))
+    activeBoosts += beacon(soulBeacon)
+    birdFeed = updatenumber(numberinput("\nJimbo's Bird Feed Multiplier: "))
+    activeBoosts += beacon(birdFeed)
     boostBeacon = updatenumber(numberinput("\nBoost Beacon Multiplier: "))
+    phoenixFeather = updatenumber(numberinput("\nPhoenix Feather Bonus Percentage: "))
     SEgain = int((1 + prestigeER / 10) * SEboostEvent * (max(0, (
-                10 ** -6 * min(prestigeEarnings * soulBeacon * boostBeacon * (phoenixFeather + 100) / 100,
+                10 ** -6 * min(prestigeEarnings * soulBeacon * boostBeacon**activeBoosts * (phoenixFeather + 100) / 100,
                                10 ** 12)) ** 0.15 - (10 ** -6) ** 0.15) + max(0, (
                 10 ** -6 * min(prestigeEarnings * soulBeacon * boostBeacon * (phoenixFeather + 100) / 100,
                                10 ** 21)) ** 0.16 - (10 ** 6) ** 0.16) + max(0, (
