@@ -145,7 +145,6 @@ def prestige():
     soulBeacon = updatenumber(numberinput("\nSoul Beacon Multiplier: "))
     activeBoosts += beacon(soulBeacon)
     birdFeed = updatenumber(numberinput("\nJimbo's Bird Feed Multiplier: "))
-    activeBoosts += beacon(birdFeed)
     boostBeacon = updatenumber(numberinput("\nBoost Beacon Multiplier: "))
     phoenixFeather = updatenumber(numberinput("\nPhoenix Feather Bonus Percentage: "))
     SEgain = int((1 + prestigeER / 10) * SEboostEvent * (max(0, (
