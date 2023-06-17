@@ -116,10 +116,8 @@ def numberinput(text):
             a = input(f"{text}")
             if numbertype(a) in [0, 1] and float(a) >= 0:
                 return str(a)
-                break
             elif numbertype(a) in [2] and updatenumber(a) >= 0:
                 return str(a)
-                break
             else:
                 print("Please provide a valid input.")
         except TypeError:
